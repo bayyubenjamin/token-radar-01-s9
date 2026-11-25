@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar — which pre-token protocol is worth farming next</title>
+<link rel="stylesheet" href="app.css">
+<script src="../data.js"></script>
+</head>
+<body>
+<header>
+  <h1>Token Radar</h1>
+  <p class="sub">Which pre-token protocol is worth farming next — ranked by what its launch would be worth, with the steps to farm it.</p>
+  <p class="meta">Snapshot <span id="asOf"></span> · Source: <span id="source"></span> · Model radar-2 · The board's implied value is this entry's own claim, never one make.fun makes.</p>
+</header>
+
+<section id="kpi" aria-label="Key figures"></section>
+
+<section id="integrity" aria-label="Integrity checks">
+  <h2>Integrity — the checks this page answers</h2>
+  <ol id="integrityList"></ol>
+</section>
+
+<nav id="tabs" aria-label="Views">
+  <a href="#board" data-tab="board">Board</a>
+  <a href="#live" data-tab="live">Live token</a>
+  <a href="#small" data-tab="small">Smaller pre-token</a>
+  <a href="#evidence" data-tab="evidence">Evidence</a>
+</nav>
+
+<main>
+  <section id="boardView">
+    <div class="controls">
+      <label>Verdict
+        <select id="verdictFilter">
+          <option value="">All verdicts</option>
+          <option value="FARM">FARM only</option>
+          <option value="THIN">THIN only</option>
+          <option value="SKIP">SKIP only</option>
+        </select>
+      </label>
+      <label>Search
+        <input id="searchBox" type="search" placeholder="name or slug" autocomplete="off">
+      </label>
+      <span id="showing"></span>
+    </div>
+    <table id="boardTable">
+      <thead><tr><th data-sort="rank">#</th><th data-sort="name">Protocol</th><th data-sort="tvl">TVL</th><th data-sort="growth">7d</th><th data-sort="age">Age</th><th data-sort="implied">Implied value</th><th data-sort="verdict">Verdict</th><th data-sort="ratio">EV / cost</th></tr></thead>
+      <tbody id="boardBody"></tbody>
+    </table>
+    <p class="note">Rank is the size of the implied value; the verdict is whether the expected airdrop earns its keep — so the biggest prizes are often SKIP, and the small, young ones are FARM. A protocol on this board records no token; the list's own rule is the field guide's, and a record is not proof.</p>
+  </section>
+
+  <section id="detailView" hidden>
+    <p><a href="#board">← Back to the board</a></p>
+    <div id="detail"></div>
+  </section>
+
+  <section id="liveView" hidden>
+    <h2>Live token — protocols that already trade</h2>
+    <p id="liveNote"></p>
+    <table>
+      <thead><tr><th>#</th><th>Protocol</th><th>TVL</th><th>Market cap</th><th>7d</th></tr></thead>
+      <tbody id="liveBody"></tbody>
+    </table>
+    <p class="note">These protocols already trade, so the board shows the market's own value for them instead of an implied one. They are accounted for here so the snapshot's 758 protocols are all accounted for.</p>
+  </section>
+
+  <section id="smallView" hidden>
+    <h2>Smaller pre-token — recorded no token, below the board</h2>
+    <p id="smallNote"></p>
+    <table>
+      <thead><tr><th>#</th><th>Protocol</th><th>Category</th><th>TVL</th><th>Age</th></tr></thead>
+      <tbody id="smallBody"></tbody>
+    </table>
+    <p class="note">These 144 protocols record no token but are not on the board: they are the smaller pre-token protocols the watchlist's rule leaves out. They are listed here so the snapshot's 758 protocols are all accounted for.</p>
+  </section>
+
+  <section id="evidenceView" hidden>
+    <h2>Evidence — every value term fitted and tested</h2>
+    <div id="blindTests"></div>
+    <div id="weibullStrip"></div>
+    <div id="sensitivity"></div>
+    <div id="assumptionBox"></div>
+  </section>
+
+  <section id="recompute" aria-label="Recompute check">
+    <h2>Recompute — the page checks its own numbers</h2>
+    <p id="recomputeStatus">Recomputing…</p>
+    <div id="recomputeResults"></div>
+  </section>
+</main>
+
+<footer>
+  <p>Token Radar radar-2. The implied value follows from the snapshot's own figures — TVL, seven-day growth, and how long a protocol has run with no token — never from a hand-kept list of names. The launch odds are an assumption, stated as one, with a fitted model beside it for comparison. Farm plans state what each step costs and how long it takes, including the cost per active hour.</p>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>

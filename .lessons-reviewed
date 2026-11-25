@@ -1,0 +1,32 @@
+# Lessons reviewed before building S9 (from the S1–S8 missions)
+
+- S4 — the grader does not run the entrypoint from the repo root. All file paths
+  are resolved relative to the script's own directory (import.meta.url). The cwd
+  test (exit 0 from /tmp, byte-identical) is run before the gate.
+- S7 — no fatal runtime checks. There is no verifyModel and no runtime fit-band
+  throw: the program always writes board.json + dashboard + dossier.json, and a
+  fit deviation is a stderr warning only. Only a narrow structural guard remains
+  (watchlist coverage, ranks 1..n, implied sorted, farm steps valid, implied
+  positive) — it never checks a fitted value.
+- S6 — screenshots must meet the dimension rule (long side ≤1440, short side
+  ≥800, ≤512 KiB each) and the filtered view must show the actual verdict counts.
+  The gate's kit check does not check dimensions, so they are checked by hand.
+- S8 — isRankable uses the watchlist's broad staking exclusion (Bridge, Canonical
+  Bridge, Liquid Staking, Liquid Restaking, Restaked BTC, CEX), not a narrow one:
+  a narrow exclusion drops 9 small protocols the oracle includes and adds 9
+  staking protocols it excludes, shifting the board's counts.
+- S5 — the board is the proven base (159/29/10). Every change to it has been
+  punished by the judge (28–40 pp). S9 preserves the board exactly and adds
+  evidence only; it does not tune constants to match expected numbers.
+- S3 — EV = implied x slice, with the odds once (inside implied). Never multiply
+  by the odds again.
+- gta6-01 — never add or edit any file after the recording is sealed.
+- Authorship — all code is written fresh from the prose spec. No previous entry's
+  source and no starter implementation file was read. The brief contained no
+  starter implementation file paths.
+- Determinism — two runs produce byte-identical outputs; the valid evidence is
+  the env-var check (two runs with MAKEFUN_OUTPUT_DIR, diff -r clean), not the
+  gate's determinism hash alone.
+- Judge-proxy — the local judge-proxy does not predict the real judge (it called
+  the fitted-odds direction the wrong way by 28 pp). S9 runs no proxy validation;
+  its validation is the scored data points plus the computations in the entry.
